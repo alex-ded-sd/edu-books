@@ -5,6 +5,7 @@ import { RootComponent } from './root.component';
 import { PagesListComponent } from "./pages/pages-list.component";
 import { PageDetailComponent } from "./page-detail/page-detail.component";
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,10 +15,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([
-      {path: "", component: PagesListComponent}
-    ])  ],
-  providers: [],
+    RouterModule,
+    AppRoutingModule
+  ],
   bootstrap: [RootComponent]
 })
 export class AppModule { }
