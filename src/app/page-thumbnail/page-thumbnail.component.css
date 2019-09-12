@@ -1,0 +1,31 @@
+.page-image-thumbnail {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	width: 250px;
+}
+.page-thumbnail:hover {
+	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.page-price {
+	font-weight: 700;
+}
+
+.page-thumbnail-flex-column {
+	margin: 10px;
+	flex: 100%;
+	max-width: 100%;
+}
+
+@media only screen and (min-width: 900px) {
+	.page-thumbnail-flex-column {
+		flex: 20%;
+		max-width: 20%;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	.page-thumbnail-flex-column {
+		flex: 50%;
+		max-width: 50%;
+	}
+}

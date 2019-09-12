@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+/* * {
+	box-sizing: border-box;
+}
+
+[class*="col-"] {
+	width: 100%;
+	float: left;
+	padding: 15px;
+}
+
+@media only screen and (min-width: 992px) {
+	.col-m-1 {width: 8%;}
+	.col-m-2 {width: 15%;}
+	.col-m-3 {width: 25%;}
+	.col-m-4 {width: 33%;}
+	.col-m-5 {width: 41%;}
+	.col-m-6 {width: 50%;}
+	.col-m-7 {width: 58%;}
+	.col-m-8 {width: 66%;}
+	.col-m-9 {width: 75%;}
+	.col-m-10 {width: 83%;}
+	.col-m-11 {width: 92%;}
+	.col-m-12 {width: 100%;}
+}
+.row {
+	width: 100%;
+	height: auto;
+}
+.row::after {
+	content: "";
+	clear: both;
+	display: table;
+} */

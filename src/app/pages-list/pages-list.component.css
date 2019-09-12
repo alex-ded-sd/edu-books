@@ -1,0 +1,7 @@
+.pages-list-flex-container {
+	display: flex;
+	flex-wrap: wrap;
+	word-wrap: break-word;
+	/* justify-content: center; */
+	/* align-items: center; */
+}

@@ -1,0 +1,7 @@
+<div class="page-thumbnail-flex-column">
+	<a [title]="page.name" [routerLink]="[ '/pages', page.id ]">
+		<img class="page-image-thumbnail" src="{{page.imageUrl}}" alt="{{page.description}}"/>
+		<p class="page-price">{{page.price}}</p>
+		{{page.name}}
+	</a>
+</div>

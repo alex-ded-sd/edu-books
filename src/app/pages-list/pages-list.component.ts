@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { PagesService } from '../services/pages.service';
-import { IPage } from '../models/ipage';
+import { Page } from '../models/page';
 
 @Component({
 	selector: 'pages-list',
@@ -8,7 +8,7 @@ import { IPage } from '../models/ipage';
 	templateUrl: './pages-list.component.html'
 })
 export class PagesListComponent implements OnInit {
-	pages: IPage[];
+	pages: Page[];
 
 	constructor(private pagesService: PagesService) {
 		
