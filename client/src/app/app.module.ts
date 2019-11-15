@@ -1,15 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { RootComponent } from './root.component';
 import { PagesListComponent } from "./pages-list/pages-list.component";
 import { PageDetailComponent } from "./page-detail/page-detail.component";
-import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
+
 import { PageThumbnailComponent } from './page-thumbnail/page-thumbnail.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+
+export function tokenGetter() {
+	return localStorage.getItem('token');
+}
 
 @NgModule({
 	declarations: [
@@ -24,7 +31,14 @@ import { LoginComponent } from './login/login.component';
 		BrowserModule,
 		RouterModule,
 		AppRoutingModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		HttpClientModule,
+		JwtModule.forRoot({
+			config: {
+			  tokenGetter: tokenGetter,
+			  whitelistedDomains: ["localhost:5000"]
+			}
+		  })
 	],
 	bootstrap: [RootComponent]
 })

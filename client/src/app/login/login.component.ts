@@ -13,17 +13,13 @@ export class LoginComponent implements OnInit {
 		password: new FormControl('')
 	})
 
-	constructor() { }
+	constructor(private _authService: AuthService) { }
 
 	ngOnInit() {
 	}
 
 	login() {
-		// this.authService.loginUser(this.loginForm.get('email').value,
-		// 	this.loginForm.get('password').value).subscribe(next => {
-		// 		console.log('success')
-		// 	}, error => {
-		// 		console.error('error')
-		// 	});
+		this._authService.loginUser(this.loginForm.get('email').value,
+			this.loginForm.get('password').value).subscribe();
 	}
 }

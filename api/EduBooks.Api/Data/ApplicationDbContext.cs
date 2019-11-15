@@ -2,7 +2,7 @@ using EduBooks.Api.Models;
 using Microsoft.EntityFrameworkCore;
 namespace EduBooks.Api.Data
 {
-	public class ApplicationContext: DbContext
+	public class ApplicationDbContext: DbContext
 	{
 		public DbSet<Page> Pages { get; set; }
 
@@ -10,7 +10,7 @@ namespace EduBooks.Api.Data
 
 		public DbSet<UserRole> UserRoles { get; set; }
 
-		public ApplicationContext(DbContextOptions<ApplicationContext> options)
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 			: base(options){}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {

@@ -1,13 +1,14 @@
 using System.Threading.Tasks;
 using EduBooks.Api.Models;
+using EduBooks.Api.Models.Dto;
 
 namespace EduBooks.Api.Services
 {
 	public interface IUserService
 	{
-		 Task<User> LoginAsync(string email, string userPassword);
+		 Task<string> LoginAsync(string email, string userPassword);
 
-		 Task<User> RegisterAsync(UserForCreationDTO userForCreation);
+		 Task<User> RegisterAsync(UserDto userForCreation);
 
 		 Task<bool> IsUserExistAsync(string email);
 	}

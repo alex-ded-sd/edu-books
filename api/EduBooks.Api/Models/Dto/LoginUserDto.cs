@@ -1,6 +1,6 @@
-namespace EduBooks.Api.Models
+namespace EduBooks.Api.Models.Dto
 {
-	public class UserForLoginDTO
+	public class LoginUserDto
 	{
 		public string Email { get; set; }
 

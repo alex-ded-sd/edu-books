@@ -15,8 +15,8 @@ namespace EduBooks.Api.Controllers
 	[Route("api/[controller]")]
 	public class PagesController : ControllerBase
 	{
-		private readonly ApplicationContext _context;
-		public PagesController(ApplicationContext context)
+		private readonly ApplicationDbContext _context;
+		public PagesController(ApplicationDbContext context)
 		{
 			_context = context;
 		}

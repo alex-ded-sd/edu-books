@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using EduBooks.Api.Models.Dto;
 
 namespace EduBooks.Api.Controllers
 {
@@ -23,46 +24,27 @@ namespace EduBooks.Api.Controllers
 		}
 
 		[HttpPost("register")]
-		public async Task<IActionResult> RegisterAsync(UserForCreationDTO userForCreation) {
+		public async Task<IActionResult> RegisterAsync(UserDto userForCreation) {
 			if (await _userService.IsUserExistAsync(userForCreation.Email))
 			{
 				return BadRequest("Уже существует");
 			}
 			User createdUser = await _userService.RegisterAsync(userForCreation);
-			await LoginUserAsync(createdUser);
 			return StatusCode(201);
 		}
 
 		[HttpPost("login")]
-		public async Task<IActionResult> LoginAsync(UserForLoginDTO userForLoginDTO)
+		public async Task<IActionResult> LoginAsync(UserDto userForLoginDTO)
 		{
-			User user = await _userService.LoginAsync(userForLoginDTO.Email, userForLoginDTO.Password);
-			if (user == null)
+			string userToken = await _userService.LoginAsync(userForLoginDTO.Email, userForLoginDTO.Password);
+			if (string.IsNullOrEmpty(userToken))
 			{
 				return BadRequest("Ошибка");
 			}
-			await LoginUserAsync(user);
-			return Ok();
-		}
-
-		private async Task LoginUserAsync(User user)
-		{
-			List<Claim> claims = new List<Claim> {
-				new Claim(ClaimTypes.Name, user.Email),
-				new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-				new Claim(ClaimTypes.Role, user.Role.RoleName)
-			};
-			ClaimsIdentity claimsIdentity =
-				new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-			AuthenticationProperties authProperties = new AuthenticationProperties
-			{
-				IsPersistent = true
-			};
-			await HttpContext.SignInAsync(
-				CookieAuthenticationDefaults.AuthenticationScheme,
-				new ClaimsPrincipal(claimsIdentity),
-				authProperties
-			);
+			
+			return Ok(new {
+				token = userToken
+			});
 		}
 	}
 }
