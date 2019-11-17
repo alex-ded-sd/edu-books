@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -13,13 +14,19 @@ export class LoginComponent implements OnInit {
 		password: new FormControl('')
 	})
 
-	constructor(private _authService: AuthService) { }
+	constructor(private _authService: AuthService, private router: Router) { }
 
 	ngOnInit() {
 	}
 
 	login() {
 		this._authService.loginUser(this.loginForm.get('email').value,
-			this.loginForm.get('password').value).subscribe();
+			this.loginForm.get('password').value).subscribe(next => {
+				console.log('YEAH');
+				this.router.navigate(['admin']);
+			},
+			error => {
+				console.error(error);
+			});
 	}
 }
