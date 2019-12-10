@@ -13,6 +13,7 @@ import { PageDetailComponent } from "./page-detail/page-detail.component";
 import { PageThumbnailComponent } from './page-thumbnail/page-thumbnail.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { NavComponent } from './nav/nav.component';
 
 export function tokenGetter() {
 	return localStorage.getItem('token');
@@ -26,6 +27,7 @@ export function tokenGetter() {
 		PageThumbnailComponent,
 		AdminComponent,
 		LoginComponent,
+		NavComponent,
 	],
 	imports: [
 		BrowserModule,
