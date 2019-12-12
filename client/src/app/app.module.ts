@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
+import { ModalModule } from 'ngx-bootstrap';
 
 import { RootComponent } from './root.component';
 import { PagesListComponent } from "./pages-list/pages-list.component";
@@ -13,6 +14,7 @@ import { PageDetailComponent } from "./page-detail/page-detail.component";
 import { PageThumbnailComponent } from './page-thumbnail/page-thumbnail.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { NavComponent } from './nav/nav.component';
 
 export function tokenGetter() {
 	return localStorage.getItem('token');
@@ -26,6 +28,7 @@ export function tokenGetter() {
 		PageThumbnailComponent,
 		AdminComponent,
 		LoginComponent,
+		NavComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -33,6 +36,7 @@ export function tokenGetter() {
 		AppRoutingModule,
 		ReactiveFormsModule,
 		HttpClientModule,
+		ModalModule.forRoot(),
 		JwtModule.forRoot({
 			config: {
 			  tokenGetter: tokenGetter,
