@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
 	loginForm: FormGroup;
 	modalRef: BsModalRef;
 
-	constructor(private _authService: AuthService, private router: Router,
-		private _fb: FormBuilder, private _modalService: BsModalService) { }
+	constructor(public authService: AuthService, private _modalService: BsModalService,
+		private _fb: FormBuilder) { }
 
 	ngOnInit() {
 		this.loginForm = this._fb.group({
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
 	login() {
 		const loginModel: LoginModel = Object.assign({}, this.loginForm.value);
-		this._authService.loginUser(loginModel).subscribe(next => {
+		this.authService.loginUser(loginModel).subscribe(user => {
 				this.modalRef.hide();
 			},
 			error => {
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	loggedIn(): boolean {
-		return this._authService.loggedIn();
+		return this.authService.loggedIn();
 	}
 
 	openModalSignIn(template: TemplateRef<any>) {

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule, BsDropdownModule } from 'ngx-bootstrap';
 
 import { RootComponent } from './root.component';
 import { PagesListComponent } from "./pages-list/pages-list.component";
@@ -37,6 +37,7 @@ export function tokenGetter() {
 		ReactiveFormsModule,
 		HttpClientModule,
 		ModalModule.forRoot(),
+		BsDropdownModule.forRoot(),
 		JwtModule.forRoot({
 			config: {
 			  tokenGetter: tokenGetter,

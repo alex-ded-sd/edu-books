@@ -12,24 +12,27 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 	baseUrl = environment.apiUrl;
-	decodedToken: any;
+	
+	public decodedToken: any;
 
 
 	constructor(private _httpClient: HttpClient,
 		private _jwtHelperService: JwtHelperService) { }
 
-	loginUser(loginModel: LoginModel): Observable<any> {
+	loginUser(loginModel: LoginModel): Observable<User> {
 		return this._httpClient
 			.post(this.baseUrl + 'auth/login', loginModel)
 			.pipe(
 				map((response: any) => {
 					if (response) {
-						this.decodedToken = this._jwtHelperService.decodeToken(response.token);
-						// const user: User = {
-						// 	id: decodedToken.nameid,
-						// 	role: decodedToken.role
-						// };
 						localStorage.setItem('token', response.token);
+						this.decodedToken = this._jwtHelperService.decodeToken(response.token);
+						const user: User = {
+							id: this.decodedToken.nameid,
+							role: this.decodedToken.role,
+							email: this.decodedToken.email
+						};
+						return user;
 					}
 				})
 			)
