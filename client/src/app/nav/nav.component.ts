@@ -13,22 +13,16 @@ export class NavComponent implements OnInit {
 	loginModel: LoginModel;
 
 
-	constructor(private fb: FormBuilder, private authService: AuthService) { }
+	constructor(private _fb: FormBuilder, private _authService: AuthService) { }
 
 	ngOnInit() {
-		this.loginForm = this.fb.group({
-			email: ['', [Validators.required]],
+		this.loginForm = this._fb.group({
+			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required]]
 	 });
 	}
 
-	loggedIn(): boolean {
-		return true;
+	signIn(): void {
+		
 	}
-
-	onSubmit(): void {
-		this.loginModel = Object.assign({}, this.loginForm.value);
-		this.authService.loginUser(this.loginModel.email, this.loginModel.password).subscribe();
-	}
-
 }
