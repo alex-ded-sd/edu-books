@@ -2,3 +2,4 @@ Git study.
 Some config rows:
 app.local.com -mode prod
 app.local-dev.com -mode dev
+app.feture-two.com -mode dev
