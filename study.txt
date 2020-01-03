@@ -1,4 +1,6 @@
-Git study.
+Git study. Changes in reature-one branch.
 Some config rows:
 app.local.com -mode prod
+app.feature-one.com -mode prod
+app.feature-one.local -mode external
 app.local-dev.com -mode dev
