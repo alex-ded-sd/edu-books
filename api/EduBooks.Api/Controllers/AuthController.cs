@@ -1,12 +1,8 @@
-using System.Security.Claims;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using EduBooks.Api.Models;
 using EduBooks.Api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 using EduBooks.Api.Models.Dto;
 
 namespace EduBooks.Api.Controllers
