@@ -11,22 +11,6 @@
 	<a class="nav-link text-light" (click)="openModalSignIn(template)">Войти</a>
 </div>
 
-<!-- <li *ngIf="loggedIn()" class="nav-item">
-	<span dropdown>
-		<a href id="basic-link" dropdownToggle (click)="false"
-			aria-controls="basic-link-dropdown" class="nav-link">{{authService.decodedToken?.email}}</a>
-		<ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
-			role="menu" aria-labelledby="basic-link">
-			<li>
-				<a class="dropdown-item" href="#">Выйти</a>
-			</li>
-		</ul>
-	</span>
-</li>
-<li *ngIf="!loggedIn()" class="nav-item">
-		<a class="nav-link" (click)="openModalSignIn(template)">Войти</a>
-</li> -->
-
 <ng-template #template>
 	<div class="modal-header">
 		<h4 class="modal-title pull-left">Войти</h4>

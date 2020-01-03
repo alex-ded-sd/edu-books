@@ -1,7 +1,12 @@
-<div class="page-thumbnail-flex-column">
-	<a [title]="page.name" [routerLink]="[ '/pages', page.id ]">
-		<img class="page-image-thumbnail" src="{{page.imageUrl}}" alt="{{page.description}}"/>
-		<p class="page-price">{{page.price}}</p>
-		{{page.name}}
-	</a>
+<div class="card h-100">
+	<a [title]="page.name" [routerLink]="['/pages', page.id]"
+		><img class="card-img-top" src="{{ page.imageUrl }}" alt="{{ page.description }}"
+	/></a>
+	<div class="card-body">
+		<h4 class="card-title">
+			<a href="#">{{ page.name }}</a>
+		</h4>
+		<h5>{{ page.price }}</h5>
+		<p class="card-text">{{ page.name }}</p>
+	</div>
 </div>

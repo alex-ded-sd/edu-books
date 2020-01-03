@@ -19,14 +19,14 @@ export class LoginComponent implements OnInit {
 		private _fb: FormBuilder
 	) {}
 
-	ngOnInit() {
+	public ngOnInit(): void {
 		this.loginForm = this._fb.group({
 			email: ["", [Validators.required, Validators.email]],
 			password: ["", [Validators.required]]
 		});
 	}
 
-	login() {
+	public login(): void {
 		const loginModel: LoginModel = Object.assign({}, this.loginForm.value);
 		this.authService.loginUser(loginModel).subscribe(
 			() => {
@@ -38,13 +38,15 @@ export class LoginComponent implements OnInit {
 		);
 	}
 
-	loggedIn(): boolean {
+	public loggedIn(): boolean {
 		return this.authService.loggedIn();
 	}
 
-	openModalSignIn(template: TemplateRef<any>) {
+	public openModalSignIn(template: TemplateRef<any>): void {
 		this.modalRef = this._modalService.show(template);
 	}
 
-	public logout(): void {}
+	public logout(): void {
+		this.authService.logout();
+	}
 }
