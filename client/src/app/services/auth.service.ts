@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { tap, retry, mergeMap } from "rxjs/operators";
+import { tap, retry, mergeMap, retryWhen, take, delayWhen } from "rxjs/operators";
 import { User } from "../models/user";
 import { LoginModel } from "../models/loginModel";
 import { Observable, timer, throwError, of } from "rxjs";
@@ -17,14 +17,24 @@ export class AuthService {
 
 	constructor(private _httpClient: HttpClient, private _jwtHelperService: JwtHelperService) {}
 
-	loginUser(loginModel: LoginModel): Observable<User> {
+	public loginUser(loginModel: LoginModel): Observable<any> {
 		return this._httpClient.post(this.baseUrl + "auth/login", loginModel).pipe(
-			retry(5),
-			mergeMap(response => (response ? of(response) : throwError(response))),
-			retry(5),
-			tap((response: any) => {
-				localStorage.setItem("token", response.token);
-				this.decodedToken = this._jwtHelperService.decodeToken(response.token);
+			retryWhen(error =>
+				error.pipe(
+					take(5),
+					delayWhen(() => timer(2000))
+				)
+			),
+			mergeMap((response: any) => (response ? of(response.token) : throwError(response))),
+			retryWhen(error =>
+				error.pipe(
+					take(5),
+					delayWhen(() => timer(2000))
+				)
+			),
+			tap((token: any) => {
+				localStorage.setItem("token", token);
+				this.decodedToken = this._jwtHelperService.decodeToken(token);
 			})
 		);
 	}

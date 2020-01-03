@@ -1,18 +1,31 @@
-<li *ngIf="loggedIn()" class="nav-item">
+<div *ngIf="loggedIn()" class="nav-item dropdown" dropdown>
+	<a class="dropdown-toggle nav-link text-light" dropdownToggle>
+		{{ authService.decodedToken?.email }}
+	</a>
+
+	<div class="dropdown-menu" *dropdownMenu>
+		<a class="dropdown-item nav-link" (click)="logout()">Выйти</a>
+	</div>
+</div>
+<div *ngIf="!loggedIn()" class="nav-item">
+	<a class="nav-link text-light" (click)="openModalSignIn(template)">Войти</a>
+</div>
+
+<!-- <li *ngIf="loggedIn()" class="nav-item">
 	<span dropdown>
 		<a href id="basic-link" dropdownToggle (click)="false"
-		   aria-controls="basic-link-dropdown" class="nav-link">{{authService.decodedToken?.email}}</a>
+			aria-controls="basic-link-dropdown" class="nav-link">{{authService.decodedToken?.email}}</a>
 		<ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
 			role="menu" aria-labelledby="basic-link">
-		  <li>
-			<a class="dropdown-item" href="#">Logout</a>
-		  </li>
+			<li>
+				<a class="dropdown-item" href="#">Выйти</a>
+			</li>
 		</ul>
-	  </span>
+	</span>
 </li>
 <li *ngIf="!loggedIn()" class="nav-item">
-		<a class="nav-link" (click)="openModalSignIn(template)">Sign in</a>
-</li>
+		<a class="nav-link" (click)="openModalSignIn(template)">Войти</a>
+</li> -->
 
 <ng-template #template>
 	<div class="modal-header">
@@ -22,14 +35,26 @@
 		</button>
 	</div>
 	<div class="modal-body">
-			<form [formGroup]="loginForm" (ngSubmit)="login()" class="form-signin">
+		<form [formGroup]="loginForm" (ngSubmit)="login()" class="form-signin">
 			<h1 class="h3 mb-3 font-weight-normal">Введите учётные данные</h1>
 			<label for="inputEmail" class="sr-only">Логин</label>
-			<input type="email" formControlName="email" class="form-control mb-2" placeholder="Логин" required="" autofocus="">
+			<input
+				type="email"
+				formControlName="email"
+				class="form-control mb-2"
+				placeholder="Логин"
+				required=""
+				autofocus=""
+			/>
 			<label for="inputPassword" class="sr-only">Пароль</label>
-			<input type="password" formControlName="password" class="form-control mb-2" placeholder="Пароль" required="">
-			<div class="checkbox mb-3">
-			</div>
+			<input
+				type="password"
+				formControlName="password"
+				class="form-control mb-2"
+				placeholder="Пароль"
+				required=""
+			/>
+			<div class="checkbox mb-3"></div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
 		</form>
 	</div>
